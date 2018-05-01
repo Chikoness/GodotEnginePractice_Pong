@@ -1,24 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://paddle/paddle_03.png" type="Texture" id=1]
+[ext_resource path="res://paddle/paddle.gd" type="Script" id=1]
+[ext_resource path="res://paddle/paddle_03.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 6.14638
-height = 106.082
+height = 135.642
 
-[node name="Paddle" type="KinematicBody2D"]
+[node name="Paddle" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.001
+script = ExtResource( 1 )
+ball_dir = 1
 
 [node name="PaddleSprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 0.2, 0.15 )
-texture = ExtResource( 1 )
+scale = Vector2( 0.25, 0.15 )
+texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
