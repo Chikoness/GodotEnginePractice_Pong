@@ -12,3 +12,8 @@ func reset():
 
 func _process(delta):
 	position += direction * speed * delta
+	
+	var col_info = move_and_collide(speed * delta)
+	
+	if col_info.collider.name == "Ball":
+		direction = Vector2(0.5, -1)
