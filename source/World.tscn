@@ -43,4 +43,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[connection signal="ball_pos_set" from="Ball" to="EnemyPaddle" method="_on_Ball_ball_pos_set"]
+
 

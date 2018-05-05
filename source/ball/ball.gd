@@ -1,9 +1,14 @@
 extends KinematicBody2D
 
+signal ball_pos_set(pos)
+
 export (float) var bounce = 300.0
 export (float) var directional_factor = 10.0
 
 var _velocity = Vector2(0, bounce)
+
+func _ready():
+	emit_signal("ball_pos_set", position)
 
 func _physics_process(delta):
 	# move and collide the ball at a velocity (displacement over time in delta)
@@ -16,6 +21,7 @@ func _physics_process(delta):
 			var _bounce_direction = -sign(_velocity.y)
 			_velocity.y = 0 
 			_velocity.y += _bounce_direction * bounce
+			
 	
 	if position.x < 0:
 		_velocity.x = abs(_velocity.x)
@@ -24,3 +30,6 @@ func _physics_process(delta):
 	
 	if position.y < 0:
 		_velocity.y = abs(_velocity.y)
+
+	emit_signal("ball_pos_set", position)
+	
