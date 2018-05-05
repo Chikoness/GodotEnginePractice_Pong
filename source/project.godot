@@ -10,13 +10,14 @@ config_version=3
 
 [application]
 
-config/name="pong"
+config/name="Pong"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=800
+window/handheld/emulate_touchscreen=true
 
 [rendering]
 
