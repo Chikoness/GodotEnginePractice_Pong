@@ -1,8 +1,4 @@
 extends KinematicBody2D
-export (float) var ball_dir = 1
-
-func _ready():
-	pass
 
 func _process(delta):
 	#mouse tracking

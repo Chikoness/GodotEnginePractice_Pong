@@ -1,30 +1,43 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=1]
-[ext_resource path="res://ball/ball.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ball/ball.gd" type="Script" id=3]
-[ext_resource path="res://background/kitchenbg.png" type="Texture" id=4]
+[ext_resource path="res://background/vent.png" type="Texture" id=1]
+[ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemy_paddle/enemy_paddle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ball/ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ball/ball.gd" type="Script" id=5]
+[ext_resource path="res://background/kitchenbg.png" type="Texture" id=6]
 
 [node name="World" type="Node" index="0"]
 
-[node name="Paddle" parent="." index="0" instance=ExtResource( 1 )]
+[node name="BackgroundVent" type="Sprite" parent="." index="0"]
+
+position = Vector2( 400, 23 )
+z_index = 3
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="Paddle" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 400, 550 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Ball" parent="." index="1" instance=ExtResource( 2 )]
+[node name="EnemyPaddle" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 400, 320 )
-script = ExtResource( 3 )
+position = Vector2( 400, 60 )
+
+[node name="Ball" parent="." index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 400, 280 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "Angular", "Collision", "Linear", "collision" ]
-bounce = 600.0
+bounce = 300.0
 directional_factor = 10.0
 
-[node name="BackgroundBG" type="Sprite" parent="." index="2"]
+[node name="BackgroundBG" type="Sprite" parent="." index="4"]
 
 position = Vector2( 400, 300 )
 z_index = -5
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
