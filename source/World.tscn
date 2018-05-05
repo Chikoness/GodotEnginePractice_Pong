@@ -1,21 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ball/ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ball/ball.gd" type="Script" id=3]
 [ext_resource path="res://background/kitchenbg.png" type="Texture" id=4]
-[ext_resource path="res://out.gd" type="Script" id=5]
-[ext_resource path="res://wall.gd" type="Script" id=6]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 435.726, 14.7443 )
-
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 303.26 )
 
 [node name="World" type="Node" index="0"]
 
@@ -28,7 +16,9 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( 400, 320 )
 script = ExtResource( 3 )
-speed = 250
+_sections_unfolded = [ "Angular", "Collision", "Linear", "collision" ]
+bounce = 600.0
+directional_factor = 10.0
 
 [node name="BackgroundBG" type="Sprite" parent="." index="2"]
 
@@ -39,71 +29,5 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="OutTop" type="StaticBody2D" parent="." index="3"]
-
-input_pickable = true
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="OutTopCollision" type="CollisionShape2D" parent="OutTop" index="0"]
-
-position = Vector2( 402.337, -14.8019 )
-shape = SubResource( 1 )
-
-[node name="OutBottom" type="StaticBody2D" parent="." index="4"]
-
-input_pickable = true
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script = ExtResource( 5 )
-
-[node name="OutTopCollision2" type="CollisionShape2D" parent="OutBottom" index="0"]
-
-position = Vector2( 402.337, 615.198 )
-shape = SubResource( 1 )
-
-[node name="WallLeft" type="StaticBody2D" parent="." index="5"]
-
-input_pickable = true
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script = ExtResource( 6 )
-y_direction = 1
-
-[node name="WallLeftCollision" type="CollisionShape2D" parent="WallLeft" index="0"]
-
-position = Vector2( -9, 300 )
-shape = SubResource( 2 )
-
-[node name="WallRight" type="StaticBody2D" parent="." index="6"]
-
-input_pickable = true
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script = ExtResource( 6 )
-y_direction = 1
-
-[node name="WallLeftCollision2" type="CollisionShape2D" parent="WallRight" index="0"]
-
-position = Vector2( 809, 300 )
-shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
 
 
