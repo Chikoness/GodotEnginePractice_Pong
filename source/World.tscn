@@ -5,7 +5,7 @@
 [ext_resource path="res://ball/ball.gd" type="Script" id=3]
 [ext_resource path="res://background/kitchenbg.png" type="Texture" id=4]
 
-[node name="World" type="Node"]
+[node name="World" type="Node" index="0"]
 
 [node name="Paddle" parent="." index="0" instance=ExtResource( 1 )]
 

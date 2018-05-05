@@ -5,20 +5,6 @@ export (float) var directional_factor = 10.0
 
 var _velocity = Vector2(0, bounce)
 
-<<<<<<< HEAD
-func reset():
-	position = initial_pos
-	speed = 250
-	direction = Vector2(0.5, 1)
-
-func _process(delta):
-	position += direction * speed * delta
-	
-	var col_info = move_and_collide(speed * delta)
-	
-	if col_info.collider.name == "Ball":
-		direction = Vector2(0.5, -1)
-=======
 func _physics_process(delta):
 	# move and collide the ball at a velocity (displacement over time in delta)
 	var _col_info = move_and_collide(_velocity * delta)	
@@ -37,5 +23,3 @@ func _physics_process(delta):
 	
 	if position.y < 0:
 		_velocity.y = abs(_velocity.y)
-	
->>>>>>> fbef362c12635f2f529a60e565a0ab18fe5081aa
