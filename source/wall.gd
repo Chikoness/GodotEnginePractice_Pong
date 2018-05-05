@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 export (float) var y_direction = 1
 
