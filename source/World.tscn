@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ball/ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ball/ball.gd" type="Script" id=3]
 [ext_resource path="res://background/kitchenbg.png" type="Texture" id=4]
-[ext_resource path="res://out.gd" type="Script" id=5]
-[ext_resource path="res://wall.gd" type="Script" id=6]
 
 [node name="World" type="Node"]
 
@@ -18,7 +16,9 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( 400, 320 )
 script = ExtResource( 3 )
-speed = 250
+_sections_unfolded = [ "Angular", "Collision", "Linear", "collision" ]
+bounce = 600.0
+directional_factor = 10.0
 
 [node name="BackgroundBG" type="Sprite" parent="." index="2"]
 
@@ -29,70 +29,5 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="OutTop" type="Area2D" parent="." index="3"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="OutTopCollision" type="CollisionPolygon2D" parent="OutTop" index="0"]
-
-build_mode = 0
-polygon = PoolVector2Array( 0, 0, 800, 0, 800, -40, 0, -40 )
-
-[node name="OutBottom" type="Area2D" parent="." index="4"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 5 )
-
-[node name="OutCollision" type="CollisionPolygon2D" parent="OutBottom" index="0"]
-
-build_mode = 0
-polygon = PoolVector2Array( 0, 600, 0, 640, 800, 640, 800, 600 )
-
-[node name="WallLeft" type="Area2D" parent="." index="5"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 6 )
-y_direction = 1
-
-[node name="WallLeftCollision" type="CollisionPolygon2D" parent="WallLeft" index="0"]
-
-build_mode = 0
-polygon = PoolVector2Array( 0, 0, 0, 600, -40, 600, -40, 0 )
-
-[node name="WallRight" type="Area2D" parent="." index="6"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 6 )
-y_direction = 1
-
-[node name="WallRightCollision" type="CollisionPolygon2D" parent="WallRight" index="0"]
-
-build_mode = 0
-polygon = PoolVector2Array( 800, 0, 800, 600, 840, 600, 840, 0 )
 
 
