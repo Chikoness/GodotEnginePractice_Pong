@@ -1,48 +1,85 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://background/vent.png" type="Texture" id=1]
-[ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=2]
-[ext_resource path="res://enemy_paddle/enemy_paddle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ball/ball.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ball/ball.gd" type="Script" id=5]
-[ext_resource path="res://background/kitchenbg.png" type="Texture" id=6]
+[ext_resource path="res://World.gd" type="Script" id=1]
+[ext_resource path="res://ScoreText.gd" type="Script" id=2]
+[ext_resource path="res://background/vent.png" type="Texture" id=3]
+[ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemy_paddle/enemy_paddle.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ball/ball.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ball/ball.gd" type="Script" id=7]
+[ext_resource path="res://background/kitchenbg.png" type="Texture" id=8]
 
 [node name="World" type="Node" index="0"]
 
-[node name="BackgroundVent" type="Sprite" parent="." index="0"]
+script = ExtResource( 1 )
+
+[node name="ScoreText" type="Label" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 720.0
+margin_right = 760.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 2 )
+
+[node name="BackgroundVent" type="Sprite" parent="." index="1"]
 
 position = Vector2( 400, 23 )
-z_index = 3
-texture = ExtResource( 1 )
+z_index = -1
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="Paddle" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Paddle" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 400, 550 )
-_sections_unfolded = [ "Transform" ]
+z_index = 2
+_sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="EnemyPaddle" parent="." index="2" instance=ExtResource( 3 )]
+[node name="EnemyPaddle" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 400, 60 )
+z_index = 2
+_sections_unfolded = [ "Z Index" ]
 
-[node name="Ball" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Ball" parent="." index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 400, 280 )
-script = ExtResource( 5 )
-_sections_unfolded = [ "Angular", "Collision", "Linear", "collision" ]
+z_index = -3
+script = ExtResource( 7 )
+_sections_unfolded = [ "Angular", "Collision", "Linear", "Z Index", "collision" ]
 bounce = 300.0
 directional_factor = 10.0
+points = 100
 
-[node name="BackgroundBG" type="Sprite" parent="." index="4"]
+[node name="BackgroundBG" type="Sprite" parent="." index="5"]
 
 position = Vector2( 400, 300 )
 z_index = -5
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
+[connection signal="score_text_set" from="." to="ScoreText" method="_on_World_score_text_set"]
+
 [connection signal="ball_pos_set" from="Ball" to="EnemyPaddle" method="_on_Ball_ball_pos_set"]
+
+[connection signal="score_added" from="Ball" to="." method="_on_Ball_score_added"]
 
 

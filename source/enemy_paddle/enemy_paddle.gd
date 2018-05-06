@@ -11,4 +11,3 @@ func _process(delta):
 		position.x = lerp(position.x, position.x + 8, speed * delta)
 	elif _ball_pos.x - position.x < -50:
 		position.x = lerp(position.x, position.x - 8, speed * delta) 
-	
