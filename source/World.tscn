@@ -1,20 +1,70 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
-[ext_resource path="res://ScoreText.gd" type="Script" id=2]
-[ext_resource path="res://background/vent.png" type="Texture" id=3]
-[ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=4]
-[ext_resource path="res://enemy_paddle/enemy_paddle.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ball/ball.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ball/ball.gd" type="Script" id=7]
-[ext_resource path="res://background/kitchenbg.png" type="Texture" id=8]
-[ext_resource path="res://life/ballLifeSpritesheet.png" type="Texture" id=9]
+[ext_resource path="res://background/vent.png" type="Texture" id=2]
+[ext_resource path="res://paddle/paddle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemy_paddle/enemy_paddle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ball/ball.tscn" type="PackedScene" id=5]
+[ext_resource path="res://background/kitchenbg.png" type="Texture" id=6]
+[ext_resource path="res://ScoreText.gd" type="Script" id=7]
+[ext_resource path="res://ui/health_bar/health_bar.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node" index="0"]
 
+pause_mode = 2
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
-[node name="ScoreText" type="Label" parent="." index="0"]
+[node name="BackgroundVent" type="Sprite" parent="." index="0"]
+
+pause_mode = 1
+position = Vector2( 400, 23 )
+z_index = -1
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Pause", "Z Index" ]
+
+[node name="Paddle" parent="." index="1" instance=ExtResource( 3 )]
+
+pause_mode = 1
+position = Vector2( 400, 550 )
+z_index = 2
+_sections_unfolded = [ "Pause", "Transform", "Z Index" ]
+
+[node name="EnemyPaddle" parent="." index="2" instance=ExtResource( 4 )]
+
+pause_mode = 1
+position = Vector2( 400, 60 )
+z_index = 2
+_sections_unfolded = [ "Pause", "Z Index" ]
+
+[node name="Ball" parent="." index="3" instance=ExtResource( 5 )]
+
+pause_mode = 1
+position = Vector2( 400, 280 )
+z_index = -3
+_sections_unfolded = [ "Angular", "Collision", "Linear", "Pause", "Z Index", "collision" ]
+
+[node name="BackgroundBG" type="Sprite" parent="." index="4"]
+
+pause_mode = 1
+position = Vector2( 400, 300 )
+z_index = -5
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Pause", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UI" type="CanvasLayer" parent="." index="5"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+_sections_unfolded = [ "Pause" ]
+
+[node name="ScoreText" type="Label" parent="UI" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -36,56 +86,19 @@ uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 2 )
-
-[node name="BackgroundVent" type="Sprite" parent="." index="1"]
-
-position = Vector2( 400, 23 )
-z_index = -1
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Z Index" ]
-
-[node name="Paddle" parent="." index="2" instance=ExtResource( 4 )]
-
-position = Vector2( 400, 550 )
-z_index = 2
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="EnemyPaddle" parent="." index="3" instance=ExtResource( 5 )]
-
-position = Vector2( 400, 60 )
-z_index = 2
-_sections_unfolded = [ "Z Index" ]
-
-[node name="Ball" parent="." index="4" instance=ExtResource( 6 )]
-
-position = Vector2( 400, 280 )
-z_index = -3
 script = ExtResource( 7 )
-_sections_unfolded = [ "Angular", "Collision", "Linear", "Z Index", "collision" ]
-bounce = 300.0
-directional_factor = 10.0
-points = 100
 
-[node name="BackgroundBG" type="Sprite" parent="." index="5"]
+[node name="HealthBar" parent="UI" index="1" instance=ExtResource( 8 )]
 
-position = Vector2( 400, 300 )
-z_index = -5
-texture = ExtResource( 8 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
-__meta__ = {
-"_edit_lock_": true
-}
+[connection signal="game_over_set" from="." to="Paddle" method="_on_World_game_over_set"]
 
-[node name="ballLife" type="Sprite" parent="." index="6"]
+[connection signal="game_over_set" from="." to="Ball" method="_on_World_game_over_set"]
 
-position = Vector2( 41.7182, 583.29 )
-scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 9 )
-hframes = 3
-_sections_unfolded = [ "Animation", "Transform" ]
+[connection signal="health_bar_set" from="." to="UI/HealthBar" method="_on_World_health_bar_set"]
 
-[connection signal="score_text_set" from="." to="ScoreText" method="_on_World_score_text_set"]
+[connection signal="score_text_set" from="." to="UI/ScoreText" method="_on_World_score_text_set"]
+
+[connection signal="ball_dropped" from="Ball" to="." method="_on_Ball_ball_dropped"]
 
 [connection signal="ball_pos_set" from="Ball" to="EnemyPaddle" method="_on_Ball_ball_pos_set"]
 

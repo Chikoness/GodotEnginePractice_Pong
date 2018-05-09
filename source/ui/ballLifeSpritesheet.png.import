@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ballLifeSpritesheet.png-8aa691bf9452afb67e6c50dac45fa754.stex"
+path="res://.import/ballLifeSpritesheet.png-9d5a6496584a1e20cc7b35a6cfce50d3.stex"
 
 [deps]
 
-source_file="res://life/ballLifeSpritesheet.png"
+source_file="res://ui/ballLifeSpritesheet.png"
 source_md5="846eb7916cc5374e524dba1ed6341126"
 
-dest_files=[ "res://.import/ballLifeSpritesheet.png-8aa691bf9452afb67e6c50dac45fa754.stex" ]
+dest_files=[ "res://.import/ballLifeSpritesheet.png-9d5a6496584a1e20cc7b35a6cfce50d3.stex" ]
 dest_md5="da4d1de053f1d7d55349c568cdb0796d"
 
 [params]

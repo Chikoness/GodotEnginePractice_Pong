@@ -6,9 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 9.81725, 9.28526 )
 
-[node name="EnemyPaddle" type="KinematicBody2D"]
+[node name="EnemyPaddle" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -24,8 +24,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( -0.0550586, 0.0819479 )
 scale = Vector2( 6.28817, 0.925619 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 
