@@ -3,11 +3,10 @@
 [ext_resource path="res://enemy_paddle/enemy_paddle.gd" type="Script" id=1]
 [ext_resource path="res://enemy_paddle/enemyAIPaddle.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
-height = 128.795
+extents = Vector2( 10, 10 )
 
 [node name="EnemyPaddle" type="KinematicBody2D"]
 
@@ -25,10 +24,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( -0.080783, -0.0538794 )
-rotation = 1.5708
-scale = Vector2( 0.923855, 0.846985 )
+position = Vector2( -0.0550586, 0.0819479 )
+scale = Vector2( 6.28817, 0.925619 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
 

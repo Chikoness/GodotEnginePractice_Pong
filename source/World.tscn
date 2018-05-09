@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://ScoreText.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://ball/ball.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ball/ball.gd" type="Script" id=7]
 [ext_resource path="res://background/kitchenbg.png" type="Texture" id=8]
+[ext_resource path="res://life/ballLifeSpritesheet.png" type="Texture" id=9]
 
 [node name="World" type="Node" index="0"]
 
@@ -75,6 +76,14 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="ballLife" type="Sprite" parent="." index="6"]
+
+position = Vector2( 80, 560 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 9 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Transform" ]
 
 [connection signal="score_text_set" from="." to="ScoreText" method="_on_World_score_text_set"]
 

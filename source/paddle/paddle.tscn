@@ -3,11 +3,10 @@
 [ext_resource path="res://paddle/paddle.gd" type="Script" id=1]
 [ext_resource path="res://paddle/Sprites/paddle_03.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 6.14638
-height = 135.642
+extents = Vector2( 62.5488, 9.34566 )
 
 [node name="Paddle" type="KinematicBody2D"]
 
@@ -25,10 +24,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( -0.0807833, 0.130671 )
-rotation = 1.5708
-scale = Vector2( 1.50941, 0.846985 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
 
