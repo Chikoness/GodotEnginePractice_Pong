@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ui/ballLifeSpritesheet.png" type="Texture" id=1]
 
-[node name="HealthSprite" type="Sprite" index="0"]
+[node name="HealthSprite" type="Sprite"]
 
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 1 )

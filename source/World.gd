@@ -5,7 +5,7 @@ signal health_bar_set(health)
 signal game_over_set(is_game_over)
 
 var _current_score = 0
-var _current_life = 3
+var _current_life = 5
 var _is_game_over = false
 
 func _on_Ball_score_added(score):
@@ -22,6 +22,7 @@ func _on_Ball_ball_dropped():
 		get_tree().paused = true
 
 	emit_signal("game_over_set", _is_game_over)
+	
 	if _is_game_over:
 		set_process_input(true)
 	

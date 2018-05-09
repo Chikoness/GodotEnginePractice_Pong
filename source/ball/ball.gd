@@ -23,7 +23,13 @@ func _on_VisibilityNotifier2D_viewport_exited(viewport):
 		emit_signal("ball_dropped")
 		# ball passes player // lose
 		position = Vector2(400, 300)
-		_velocity = Vector2(0, bounce)		
+		_velocity = Vector2(0, bounce)
+		
+	if position.y <= 0:
+		# ball passes enemy // win
+		position = Vector2(400, 300)
+		_velocity = Vector2(0, -bounce)
+		emit_signal("score_added", points)
 
 func _ready():
 	emit_signal("ball_pos_set", position)	
@@ -46,11 +52,5 @@ func _physics_process(delta):
 			_velocity.x = abs(_velocity.x)
 		if position.x > get_viewport_rect().size.x:
 			_velocity.x = -abs(_velocity.x)
-		
-		if position.y < 0:		
-			# ball passes enemy // win
-			position = Vector2(400, 300)
-			_velocity = Vector2(0, -bounce)
-			emit_signal("score_added", points)
 		
 		emit_signal("ball_pos_set", position)
